@@ -1,0 +1,196 @@
+owasp,owasp_rank,owasp_desc,cwe_desc,cwe
+1345,1,Broken Access Control,Improper Limitation of a Pathname to a Restricted Directory ('Path Traversal'),22
+1345,1,Broken Access Control,Relative Path Traversal,23
+1345,1,Broken Access Control,Path Traversal: '.../...//',35
+1345,1,Broken Access Control,Improper Link Resolution Before File Access ('Link Following'),59
+1345,1,Broken Access Control,Exposure of Sensitive Information to an Unauthorized Actor,200
+1345,1,Broken Access Control,Insertion of Sensitive Information Into Sent Data,201
+1345,1,Broken Access Control,Storage of File with Sensitive Data Under Web Root,219
+1345,1,Broken Access Control,Permissions Privileges and Access Controls,264
+1345,1,Broken Access Control,Permission Issues,275
+1345,1,Broken Access Control,Incorrect Default Permissions,276
+1345,1,Broken Access Control,Improper Access Control,284
+1345,1,Broken Access Control,Improper Authorization,285
+1345,1,Broken Access Control,CompositeCross-Site Request Forgery (CSRF),352
+1345,1,Broken Access Control,Exposure of Private Personal Information to an Unauthorized Actor,359
+1345,1,Broken Access Control,Insecure Temporary File,377
+1345,1,Broken Access Control,Transmission of Private Resources into a New Sphere ('Resource Leak'),402
+1345,1,Broken Access Control,Direct Request ('Forced Browsing'),425
+1345,1,Broken Access Control,Unintended Proxy or Intermediary ('Confused Deputy'),441
+1345,1,Broken Access Control,Exposure of Sensitive System Information to an Unauthorized Control Sphere,497
+1345,1,Broken Access Control,Insertion of Sensitive Information into Externally-Accessible File or Directory,538
+1345,1,Broken Access Control,Inclusion of Sensitive Information in Source Code,540
+1345,1,Broken Access Control,Exposure of Information Through Directory Listing,548
+1345,1,Broken Access Control,Files or Directories Accessible to External Parties,552
+1345,1,Broken Access Control,Authorization Bypass Through User-Controlled SQL Primary Key,566
+1345,1,Broken Access Control,URL Redirection to Untrusted Site ('Open Redirect'),601
+1345,1,Broken Access Control,Authorization Bypass Through User-Controlled Key,639
+1345,1,Broken Access Control,Exposure of WSDL File Containing Sensitive Information,651
+1345,1,Broken Access Control,Exposure of Resource to Wrong Sphere,668
+1345,1,Broken Access Control,Use of Incorrectly-Resolved Name or Reference,706
+1345,1,Broken Access Control,Missing Authorization,862
+1345,1,Broken Access Control,Incorrect Authorization,863
+1345,1,Broken Access Control,Improper Control of Dynamically-Managed Code Resources,913
+1345,1,Broken Access Control,Insecure Storage of Sensitive Information,922
+1345,1,Broken Access Control,Sensitive Cookie with Improper SameSite Attribute,1275
+1346,2,Cryptographic Failures,Weak Encoding for Password,261
+1346,2,Cryptographic Failures,Improper Following of a Certificate's Chain of Trust,296
+1346,2,Cryptographic Failures,Cryptographic Issues,310
+1346,2,Cryptographic Failures,Cleartext Transmission of Sensitive Information,319
+1346,2,Cryptographic Failures,Use of Hard-coded Cryptographic Key,321
+1346,2,Cryptographic Failures,Key Exchange without Entity Authentication,322
+1346,2,Cryptographic Failures,Reusing a Nonce Key Pair in Encryption,323
+1346,2,Cryptographic Failures,Use of a Key Past its Expiration Date,324
+1346,2,Cryptographic Failures,Missing Cryptographic Step,325
+1346,2,Cryptographic Failures,Inadequate Encryption Strength,326
+1346,2,Cryptographic Failures,Use of a Broken or Risky Cryptographic Algorithm,327
+1346,2,Cryptographic Failures,Use of Weak Hash,328
+1346,2,Cryptographic Failures,Generation of Predictable IV with CBC Mode,329
+1346,2,Cryptographic Failures,Use of Insufficiently Random Values,330
+1346,2,Cryptographic Failures,Insufficient Entropy,331
+1346,2,Cryptographic Failures,Incorrect Usage of Seeds in Pseudo-Random Number Generator (PRNG),335
+1346,2,Cryptographic Failures,Same Seed in Pseudo-Random Number Generator (PRNG),336
+1346,2,Cryptographic Failures,Predictable Seed in Pseudo-Random Number Generator (PRNG),337
+1346,2,Cryptographic Failures,Use of Cryptographically Weak Pseudo-Random Number Generator (PRNG),338
+1346,2,Cryptographic Failures,Generation of Predictable Numbers or Identifiers,340
+1346,2,Cryptographic Failures,Improper Verification of Cryptographic Signature,347
+1346,2,Cryptographic Failures,Unprotected Transport of Credentials,523
+1346,2,Cryptographic Failures,Insecure Communications,720
+1346,2,Cryptographic Failures,Selection of Less-Secure Algorithm During Negotiation ('Algorithm Downgrade'),757
+1346,2,Cryptographic Failures,Use of a One-Way Hash without a Salt,759
+1346,2,Cryptographic Failures,Use of a One-Way Hash with a Predictable Salt,760
+1346,2,Cryptographic Failures,Use of RSA Algorithm without OAEP,780
+1346,2,Cryptographic Failures,Insufficient Transport Layer Protection,818
+1346,2,Cryptographic Failures,Use of Password Hash With Insufficient Computational Effort,916
+1347,3,Injection,Improper Input Validation,20
+1347,3,Injection,Improper Neutralization of Special Elements in Output Used by a Downstream Component ('Injection'),74
+1347,3,Injection,Failure to Sanitize Special Elements into a Different Plane (Special Element Injection),75
+1347,3,Injection,Improper Neutralization of Special Elements used in a Command ('Command Injection'),77
+1347,3,Injection,Improper Neutralization of Special Elements used in an OS Command ('OS Command Injection'),78
+1347,3,Injection,Improper Neutralization of Input During Web Page Generation ('Cross-site Scripting'),79
+1347,3,Injection,Improper Neutralization of Script-Related HTML Tags in a Web Page (Basic XSS),80
+1347,3,Injection,Improper Neutralization of Script in Attributes in a Web Page,83
+1347,3,Injection,Improper Neutralization of Alternate XSS Syntax,87
+1347,3,Injection,Improper Neutralization of Argument Delimiters in a Command ('Argument Injection'),88
+1347,3,Injection,Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection'),89
+1347,3,Injection,Improper Neutralization of Special Elements used in an LDAP Query ('LDAP Injection'),90
+1347,3,Injection,XML Injection (aka Blind XPath Injection),91
+1347,3,Injection,Improper Neutralization of CRLF Sequences ('CRLF Injection'),93
+1347,3,Injection,Improper Control of Generation of Code ('Code Injection'),94
+1347,3,Injection,Improper Neutralization of Directives in Dynamically Evaluated Code ('Eval Injection'),95
+1347,3,Injection,Improper Neutralization of Directives in Statically Saved Code ('Static Code Injection'),96
+1347,3,Injection,Improper Neutralization of Server-Side Includes (SSI) Within a Web Page,97
+1347,3,Injection,Improper Control of Filename for Include/Require Statement in PHP Program ('PHP Remote File Inclusion'),98
+1347,3,Injection,Improper Control of Resource Identifiers ('Resource Injection'),99
+1347,3,Injection,Improper Neutralization of CRLF Sequences in HTTP Headers ('HTTP Request/Response Splitting'),113
+1347,3,Injection,Improper Encoding or Escaping of Output,116
+1347,3,Injection,Improper Neutralization of Special Elements,138
+1347,3,Injection,Incomplete List of Disallowed Inputs,184
+1347,3,Injection,Use of Externally-Controlled Input to Select Classes or Code ('Unsafe Reflection'),470
+1347,3,Injection,Modification of Assumed-Immutable Data (MAID),471
+1347,3,Injection,SQL Injection: Hibernate,564
+1347,3,Injection,Externally Controlled Reference to a Resource in Another Sphere,610
+1347,3,Injection,Improper Neutralization of Data within XPath Expressions ('XPath Injection'),643
+1347,3,Injection,Improper Neutralization of HTTP Headers for Scripting Syntax,644
+1347,3,Injection,Improper Neutralization of Data within XQuery Expressions ('XQuery Injection'),652
+1347,3,Injection,Improper Neutralization of Special Elements used in an Expression Language Statement ('Expression Language Injection'),917
+1348,4,Insecure Design,External Control of File Name or Path,73
+1348,4,Insecure Design,Permissive List of Allowed Inputs,183
+1348,4,Insecure Design,Generation of Error Message Containing Sensitive Information,209
+1348,4,Insecure Design,Exposure of Sensitive Information Due to Incompatible Policies,213
+1348,4,Insecure Design,Improper Handling of Extra Parameters,235
+1348,4,Insecure Design,Plaintext Storage of a Password,256
+1348,4,Insecure Design,Storing Passwords in a Recoverable Format,257
+1348,4,Insecure Design,Incorrect Privilege Assignment,266
+1348,4,Insecure Design,Improper Privilege Management,269
+1348,4,Insecure Design,Improper Handling of Insufficient Permissions or Privileges,280
+1348,4,Insecure Design,Missing Encryption of Sensitive Data,311
+1348,4,Insecure Design,Cleartext Storage of Sensitive Information,312
+1348,4,Insecure Design,Cleartext Storage in a File or on Disk,313
+1348,4,Insecure Design,Cleartext Storage of Sensitive Information in Memory,316
+1348,4,Insecure Design,Unprotected Primary Channel,419
+1348,4,Insecure Design,Deployment of Wrong Handler,430
+1348,4,Insecure Design,Unrestricted Upload of File with Dangerous Type,434
+1348,4,Insecure Design,Inconsistent Interpretation of HTTP Requests ('HTTP Request/Response Smuggling'),444
+1348,4,Insecure Design,User Interface (UI) Misrepresentation of Critical Information,451
+1348,4,Insecure Design,External Control of Assumed-Immutable Web Parameter,472
+1348,4,Insecure Design,Trust Boundary Violation,501
+1348,4,Insecure Design,Insufficiently Protected Credentials,522
+1348,4,Insecure Design,Use of Web Browser Cache Containing Sensitive Information,525
+1348,4,Insecure Design,Use of Persistent Cookies Containing Sensitive Information,539
+1348,4,Insecure Design,J2EE Bad Practices: Non-serializable Object Stored in Session,579
+1348,4,Insecure Design,Use of GET Request Method With Sensitive Query Strings,598
+1348,4,Insecure Design,Client-Side Enforcement of Server-Side Security,602
+1348,4,Insecure Design,External Control of Critical State Data,642
+1348,4,Insecure Design,Reliance on File Name or Extension of Externally-Supplied File,646
+1348,4,Insecure Design,Trusting HTTP Permission Methods on the Server Side,650
+1348,4,Insecure Design,Improper Isolation or Compartmentalization,653
+1348,4,Insecure Design,Reliance on Security Through Obscurity,656
+1348,4,Insecure Design,Violation of Secure Design Principles,657
+1348,4,Insecure Design,Improper Control of Interaction Frequency,799
+1348,4,Insecure Design,Reliance on Untrusted Inputs in a Security Decision,807
+1348,4,Insecure Design,Business Logic Errors,840
+1348,4,Insecure Design,Improper Enforcement of Behavioral Workflow,841
+1348,4,Insecure Design,Use of Implicit Intent for Sensitive Communication,927
+1348,4,Insecure Design,Improper Restriction of Rendered UI Layers or Frames,1021
+1348,4,Insecure Design,Improper Use of Validation Framework,1173
+1349,5,Security Misconfiguration,7PK - Environment,2
+1349,5,Security Misconfiguration,ASP.NET Misconfiguration: Creating Debug Binary,11
+1349,5,Security Misconfiguration,ASP.NET Misconfiguration: Password in Configuration File,13
+1349,5,Security Misconfiguration,External Control of System or Configuration Setting,15
+1349,5,Security Misconfiguration,Configuration,16
+1349,5,Security Misconfiguration,Password in Configuration File,260
+1349,5,Security Misconfiguration,Cleartext Storage of Sensitive Information in a Cookie,315
+1349,5,Security Misconfiguration,.NET Misconfiguration: Use of Impersonation,520
+1349,5,Security Misconfiguration,Exposure of Sensitive Information Through Environmental Variables,526
+1349,5,Security Misconfiguration,Java Runtime Error Message Containing Sensitive Information,537
+1349,5,Security Misconfiguration,Inclusion of Sensitive Information in an Include File,541
+1349,5,Security Misconfiguration,Use of Hard-coded Security-relevant Constants,547
+1349,5,Security Misconfiguration,Improper Restriction of XML External Entity Reference,611
+1349,5,Security Misconfiguration,Sensitive Cookie in HTTPS Session Without 'Secure' Attribute,614
+1349,5,Security Misconfiguration,Missing Custom Error Page,756
+1349,5,Security Misconfiguration,Improper Restriction of Recursive Entity References in DTDs ('XML Entity Expansion'),776
+1349,5,Security Misconfiguration,Permissive Cross-domain Policy with Untrusted Domains,942
+1349,5,Security Misconfiguration,Sensitive Cookie Without 'HttpOnly' Flag,1004
+1349,5,Security Misconfiguration,Security Misconfiguration,1032
+1349,5,Security Misconfiguration,ASP.NET Misconfiguration: Improper Model Validation,1174
+1352,6,Vulnerable and Outdated Components,Using Components with Known Vulnerabilities,937
+1352,6,Vulnerable and Outdated Components,Using Components with Known Vulnerabilities,1035
+1352,6,Vulnerable and Outdated Components,Use of Unmaintained Third Party Components,1104
+1353,7,Identification and Authentication Failures,Credentials Management Errors,255
+1353,7,Identification and Authentication Failures,Use of Hard-coded Password,259
+1353,7,Identification and Authentication Failures,Improper Authentication,287
+1353,7,Identification and Authentication Failures,Authentication Bypass Using an Alternate Path or Channel,288
+1353,7,Identification and Authentication Failures,Authentication Bypass by Spoofing,290
+1353,7,Identification and Authentication Failures,Authentication Bypass by Capture-replay,294
+1353,7,Identification and Authentication Failures,Improper Certificate Validation,295
+1353,7,Identification and Authentication Failures,Improper Validation of Certificate with Host Mismatch,297
+1353,7,Identification and Authentication Failures,Channel Accessible by Non-Endpoint,300
+1353,7,Identification and Authentication Failures,Authentication Bypass by Assumed-Immutable Data,302
+1353,7,Identification and Authentication Failures,Missing Critical Step in Authentication,304
+1353,7,Identification and Authentication Failures,Missing Authentication for Critical Function,306
+1353,7,Identification and Authentication Failures,Improper Restriction of Excessive Authentication Attempts,307
+1353,7,Identification and Authentication Failures,Origin Validation Error,346
+1353,7,Identification and Authentication Failures,CompositeSession Fixation,384
+1353,7,Identification and Authentication Failures,Weak Password Requirements,521
+1353,7,Identification and Authentication Failures,Insufficient Session Expiration,613
+1353,7,Identification and Authentication Failures,Unverified Password Change,620
+1353,7,Identification and Authentication Failures,Weak Password Recovery Mechanism for Forgotten Password,640
+1353,7,Identification and Authentication Failures,Use of Hard-coded Credentials,798
+1353,7,Identification and Authentication Failures,Improper Verification of Source of a Communication Channel,940
+1353,7,Identification and Authentication Failures,Lockout Mechanism Errors,1216
+1354,8,Software and Data Integrity Failures,Insufficient Verification of Data Authenticity,345
+1354,8,Software and Data Integrity Failures,Missing Support for Integrity Check,353
+1354,8,Software and Data Integrity Failures,Untrusted Search Path,426
+1354,8,Software and Data Integrity Failures,Download of Code Without Integrity Check,494
+1354,8,Software and Data Integrity Failures,Deserialization of Untrusted Data,502
+1354,8,Software and Data Integrity Failures,Reliance on Cookies without Validation and Integrity Checking,565
+1354,8,Software and Data Integrity Failures,Reliance on Cookies without Validation and Integrity Checking in a Security Decision,784
+1354,8,Software and Data Integrity Failures,Inclusion of Functionality from Untrusted Control Sphere,829
+1354,8,Software and Data Integrity Failures,Inclusion of Web Functionality from an Untrusted Source,830
+1354,8,Software and Data Integrity Failures,Improperly Controlled Modification of Dynamically-Determined Object Attributes,915
+1355,9,Security Logging and Monitoring Failures,Improper Output Neutralization for Logs,117
+1355,9,Security Logging and Monitoring Failures,Omission of Security-relevant Information,223
+1355,9,Security Logging and Monitoring Failures,Insertion of Sensitive Information into Log File,532
+1355,9,Security Logging and Monitoring Failures,Insufficient Logging,778
+1356,10,Server-Side Request Forgery,Server-Side Request Forgery (SSRF),918

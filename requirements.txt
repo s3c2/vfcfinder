@@ -1,0 +1,11 @@
+GitPython
+numpy
+packaging
+pandas
+patchparser
+scikit_learn
+sentence_transformers
+torch
+tqdm
+transformers
+xgboost

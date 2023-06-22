@@ -1,0 +1,31 @@
+[tool.poetry]
+name = "vfcfinder"
+version = "0.1.0"
+description = ""
+authors = ["tdunlap607 <tdunlap607@gmail.com>"]
+readme = "README.md"
+
+include = [
+    "bin/*"
+]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+gitpython = "^3.1.31"
+numpy = "^1.25.0"
+packaging = "^23.1"
+pandas = "^2.0.2"
+patchparser = "^0.0.3"
+scikit-learn = "^1.2.2"
+sentence-transformers = "^2.2.2"
+torch = "^2.0.1"
+tqdm = "^4.65.0"
+transformers = "^4.30.2"
+xgboost = "^1.7.6"
+
+[tool.poetry.scripts]
+vfcfinder = "bin.find_vfc:main"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
