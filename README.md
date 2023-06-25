@@ -82,18 +82,20 @@ More info: https://github.com/s3c2/vfcfinder
 
 The below example is downloading an initial advisory to scan, creating the clone path for downloading repositories from the targeted advisory, and running VFCFinder from the command line:
 ```shell
+# show initial directory structure
 ~/demo$ tree -L 1
 .
 
 0 directories, 0 files
 
 # download a GHSA sample file
-~/demo$ curl https://raw.githubusercontent.com/github/advisory-database/main/advisories/github-reviewed/2022/08/GHSA-v65g-f3cj-fjp4/GHSA-v65g-f3cj-fjp4.json -o GHSA-v65g-f3cj-fjp4.json
+curl https://raw.githubusercontent.com/github/advisory-database/main/advisories/github-reviewed/2022/08/GHSA-v65g-f3cj-fjp4/GHSA-v65g-f3cj-fjp4.json -o GHSA-v65g-f3cj-fjp4.json
 
 # Create a directory to store the clones
-~/demo$ mkdir ./clones/
+mkdir ./clones/
 
-~/demo$ tree -L 2
+# show directory structure
+tree -L 2
 .
 ├── clones
 └── GHSA-v65g-f3cj-fjp4.json
@@ -101,7 +103,7 @@ The below example is downloading an initial advisory to scan, creating the clone
 1 directory, 1 file
 
 # run VFCFinder by pointing to the local GHSA file and the clone path
-~/demo$ vfcfinder --advisory_path ./GHSA-v65g-f3cj-fjp4.json --clone_path ./clones/ --output_path ./ranked_commits_GHSA-v65g-f3cj-fjp4.csv
+vfcfinder --advisory_path ./GHSA-v65g-f3cj-fjp4.json --clone_path ./clones/ --output_path ./ranked_commits_GHSA-v65g-f3cj-fjp4.csv
 
 Cloning repository: ethereum/eth-account
 Cloning repo to: ./clones/ethereum/eth-account
@@ -132,7 +134,7 @@ Rank 4 ||  SHA: c0060ca ||  Commit Message: Bump version: 0.5.8 → 0.5.9 || VFC
 Rank 5 ||  SHA: da84e6d ||  Commit Message: Compile release notes || VFC Prob: 0.0
 
 # we can see the repository of the target advisory was cloned and output was saved from VFCFinder
-~/demo$ tree -L 3
+tree -L 3
 .
 ├── clones 
 │   └── ethereum # cloned repository initiated by VFCFinder
