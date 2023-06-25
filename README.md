@@ -47,16 +47,18 @@ VFCFinder does not require a GPU, but if you have a [CUDA-capable](https://docs.
 
 # Usage
 
-Currently, security advisories must be on your local system. Users can download advisories from [GitHub Advisory Database](https://github.com/github/advisory-database) or [OSV Vulnerability Database](https://osv.dev/). 
-VFCFinder has a set of minimum requirements for the security advisory:
-  * Must be in the [Open Source Vulnerability (OSV)](https://ossf.github.io/osv-schema/) format
-    * Example: [GHSA-v65g-f3cj-fjp4](https://github.com/github/advisory-database/blob/main/advisories/github-reviewed/2022/08/GHSA-v65g-f3cj-fjp4/GHSA-v65g-f3cj-fjp4.json)
-  * Contains a [ranges fixed version](https://ossf.github.io/osv-schema/#affectedrangestype-field)
-    * Example: ```"fixed": "0.5.9"```
-  * Has a labeled [database specific](https://ossf.github.io/osv-schema/#affecteddatabase_specific-field) CWE-ID type
-    * Example: ```"cwe_ids": ["CWE-1333", "CWE-697"]```
-  * Contains a GIT package source code link in the [references](https://ossf.github.io/osv-schema/#affecteddatabase_specific-field)
-    * Example: ```{"type": "PACKAGE", "url": "https://github.com/ethereum/eth-account"}```
+VFCFinder has two local requirements:
+  * ```clone_path```: Local path to save GIT repositories from a security advisory (see example below)
+  * ```advisory_path```: Currently, security advisories must be on your local system. Users can download advisories from [GitHub Advisory Database](https://github.com/github/advisory-database) or [OSV Vulnerability Database](https://osv.dev/). 
+  VFCFinder has a set of minimum requirements for the security advisory:
+    * Must be in the [Open Source Vulnerability (OSV)](https://ossf.github.io/osv-schema/) format
+      * Example: [GHSA-v65g-f3cj-fjp4](https://github.com/github/advisory-database/blob/main/advisories/github-reviewed/2022/08/GHSA-v65g-f3cj-fjp4/GHSA-v65g-f3cj-fjp4.json)
+    * Contains a [ranges fixed version](https://ossf.github.io/osv-schema/#affectedrangestype-field)
+      * Example: ```"fixed": "0.5.9"```
+    * Has a labeled [database specific](https://ossf.github.io/osv-schema/#affecteddatabase_specific-field) CWE-ID type
+      * Example: ```"cwe_ids": ["CWE-1333", "CWE-697"]```
+    * Contains a GIT package source code link in the [references](https://ossf.github.io/osv-schema/#affecteddatabase_specific-field)
+      * Example: ```{"type": "PACKAGE", "url": "https://github.com/ethereum/eth-account"}```
 
 ## Use VFCFinder as a command line tool:
 ```shell
