@@ -25,7 +25,7 @@ def main():
     requiredNamed.add_argument(
         "--clone_path",
         type=str,
-        help="Path to clone the GitHub Repository",
+        help="Local path to clone the GitHub Repository",
         required=True,
     )
 
@@ -33,7 +33,7 @@ def main():
     parser.add_argument(
         "--output_path",
         type=str,
-        help="Path to save output to a CSV",
+        help="Local path to save output to a CSV",
         required=False,
     )
 
@@ -43,14 +43,14 @@ def main():
         parser.print_usage()
         parser.exit()
     else:
-        GHSA_ID = args.advisory_path
-        CLONE_DIRECTORY = args.clone_path
+        ADVISORY_PATH = args.advisory_path
+        CLONE_PATH = args.clone_path
 
     if args.output_path:
-        vfc_ranker.rank(temp_clone_path=CLONE_DIRECTORY, temp_ghsa_path=GHSA_ID, save_path=args.output_path)
+        vfc_ranker.rank(advisory_path=ADVISORY_PATH, clone_path=CLONE_PATH, save_path=args.output_path)
     else:
         # call the ranker
-        vfc_ranker.rank(temp_clone_path=CLONE_DIRECTORY, temp_ghsa_path=GHSA_ID)
+        vfc_ranker.rank(advisory_path=ADVISORY_PATH, clone_path=CLONE_PATH)
 
 
 if __name__ == '__main__':
