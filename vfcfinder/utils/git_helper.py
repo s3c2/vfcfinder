@@ -82,11 +82,14 @@ def semver_sort(temp_versions):
                 except Exception as err:
                     print(err)
                     # TODO: this needs to be handled better
-                    clean_each = ".".join(each.split(".")[:3])
-                    temp_version = Version(clean_each)
-                    temp_version.raw_version = each
-                    temp_version.error = True
-                    clean_parse.append(temp_version)
+                    try:
+                        clean_each = ".".join(each.split(".")[:3])
+                        temp_version = Version(clean_each)
+                        temp_version.raw_version = each
+                        temp_version.error = True
+                        clean_parse.append(temp_version)
+                    except Exception as last_err:
+                        print(f"Unkown version type, skipping: {each}")
 
             # sort the clean versions
             clean_parse.sort()
