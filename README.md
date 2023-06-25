@@ -101,7 +101,7 @@ The below example is downloading an initial advisory to scan, creating the clone
 1 directory, 1 file
 
 # run VFCFinder by pointing to the local GHSA file and the clone path
-~/demo$ vfcfinder --advisory_path ./GHSA-v65g-f3cj-fjp4.json --clone_path ./clones/
+~/demo$ vfcfinder --advisory_path ./GHSA-v65g-f3cj-fjp4.json --clone_path ./clones/ --output_path ./ranked_commits_GHSA-v65g-f3cj-fjp4.csv
 
 Cloning repository: ethereum/eth-account
 Cloning repo to: ./clones/ethereum/eth-account

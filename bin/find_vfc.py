@@ -47,7 +47,7 @@ def main():
         CLONE_PATH = args.clone_path
 
     if args.output_path:
-        vfc_ranker.rank(advisory_path=ADVISORY_PATH, clone_path=CLONE_PATH, save_path=args.output_path)
+        vfc_ranker.rank(advisory_path=ADVISORY_PATH, clone_path=CLONE_PATH, output_path=args.output_path)
     else:
         # call the ranker
         vfc_ranker.rank(advisory_path=ADVISORY_PATH, clone_path=CLONE_PATH)

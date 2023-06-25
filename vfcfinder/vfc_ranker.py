@@ -14,14 +14,14 @@ from vfcfinder.utils import osv_helper, git_helper
 from vfcfinder.features import vfc_identification, static_features, semantic_similarity
 
 
-def rank(advisory_path: str, clone_path: str, return_results=False, save_path=None):
+def rank(advisory_path: str, clone_path: str, return_results=False, output_path=None):
     """Ranks commits in relevance to a given security advisory
 
     Args:
-        temp_ghsa_path (str): Path to a security advisory
-        temp_clone_path (str): Path to clone a repository
+        advisory_path (str): Local path to a security advisory
+        clone_path (str): Local path to clone a repository
         return_restuls (bool): Returns sorted commits in a pd.DataFrame
-        save_path (str): Path to save results in a CSV form
+        output_path (str): Path to save results in a CSV form
     """
     # SET args
     GHSA_ID = advisory_path
@@ -311,8 +311,8 @@ def rank(advisory_path: str, clone_path: str, return_results=False, save_path=No
         )
     
     # save results
-    if save_path is not None:
-        commits.to_csv(save_path, encoding='utf-8', index=False)
+    if output_path is not None:
+        commits.to_csv(output_path, encoding='utf-8', index=False)
 
     # return results for later use
     if return_results:
