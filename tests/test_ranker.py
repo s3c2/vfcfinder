@@ -20,7 +20,7 @@ class TestRanker(unittest.TestCase):
 
         # Get the commits between a prior and current tag
         ranked_commits = vfc_ranker.rank(
-            temp_ghsa_path=GHSA_ID, temp_clone_path=CLONE_PATH, return_results=True
+            advisory_path=GHSA_ID, clone_path=CLONE_PATH, return_results=True
         )
 
         # Rank should be 70f89be700df0d5f08ef696252c88741f8414060

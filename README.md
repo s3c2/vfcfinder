@@ -30,12 +30,12 @@ Vulnerability fixing commits (VFC) play a critical part in the health of modern-
 Clone the VFCFinder repository and pip install from the clone. We recommend creating a [virtual environment](https://docs.python.org/3/library/venv.html) to install VFCFinder. 
 
 ```shell
-~$ git clone git@github.com:s3c2/vfcfinder.git
-~$ cd vfcfinder
+git clone git@github.com:s3c2/vfcfinder.git
+cd vfcfinder
 
-~/vfcfinder$ python3 -m venv .venv
-~/vfcfinder$ source .venv/bin/activate
-~/vfcfinder$ pip3 install .
+python3 -m venv .venv
+source .venv/bin/activate
+pip3 install .
 ```
 
 VFCFinder will be on PyPI soon! 
@@ -47,6 +47,7 @@ VFCFinder does not require a GPU, but if you have a [CUDA-capable](https://docs.
 
 # Usage
 
+Currently, security advisories must be on your local system. Users can download advisories from [GitHub Advisory Database](https://github.com/github/advisory-database) or [OSV Vulnerability Database](https://osv.dev/). 
 VFCFinder has a set of minimum requirements for the security advisory:
   * Must be in the [Open Source Vulnerability (OSV)](https://ossf.github.io/osv-schema/) format
     * Example: [GHSA-v65g-f3cj-fjp4](https://github.com/github/advisory-database/blob/main/advisories/github-reviewed/2022/08/GHSA-v65g-f3cj-fjp4/GHSA-v65g-f3cj-fjp4.json)
@@ -59,7 +60,8 @@ VFCFinder has a set of minimum requirements for the security advisory:
 
 ## Use VFCFinder as a command line tool:
 ```shell
-$ vfcfinder -h
+vfcfinder -h
+
 usage: vfcfinder [-h] --advisory_path ADVISORY_PATH --clone_path CLONE_PATH [--output_path OUTPUT_PATH]
 
 VFCFinder - matches commits to a security advisory.
@@ -71,11 +73,74 @@ options:
 
 required arguments:
   --advisory_path ADVISORY_PATH
-                        Path to target OSV security advisory
+                        Local path to the target OSV security advisory
   --clone_path CLONE_PATH
-                        Path to clone the GitHub Repository
+                        Local path to clone the GitHub Repository
 
 More info: https://github.com/s3c2/vfcfinder
+```
+
+The below example is downloading an initial advisory to scan, creating the clone path for downloading repositories from the targeted advisory, and running VFCFinder from the command line:
+```shell
+~/demo$ tree -L 1
+.
+
+0 directories, 0 files
+
+# download a GHSA sample file
+~/demo$ curl https://raw.githubusercontent.com/github/advisory-database/main/advisories/github-reviewed/2022/08/GHSA-v65g-f3cj-fjp4/GHSA-v65g-f3cj-fjp4.json -o GHSA-v65g-f3cj-fjp4.json
+
+# Create a directory to store the clones
+~/demo$ mkdir ./clones/
+
+~/demo$ tree -L 2
+.
+├── clones
+└── GHSA-v65g-f3cj-fjp4.json
+
+1 directory, 1 file
+
+# run VFCFinder by pointing to the local GHSA file and the clone path
+~/demo$ vfcfinder --advisory_path ./GHSA-v65g-f3cj-fjp4.json --clone_path ./clones/
+
+Cloning repository: ethereum/eth-account
+Cloning repo to: ./clones/ethereum/eth-account
+Obtaining diff for commit 1/5 || c0060ca
+Obtaining diff for commit 2/5 || da84e6d
+Obtaining diff for commit 3/5 || 891ec7c
+Obtaining diff for commit 4/5 || f1ee532
+Obtaining diff for commit 5/5 || 70f89be
+
+Generating VFC probability inference for each commit...
+100%|████████████████████| 1/1 [00:00<00:00,  1.30it/s]
+
+Generating VFC type inference for each commit...
+100%|████████████████████| 1/1 [00:01<00:00,  1.02s/it]
+
+
+Generating semantic similarity scores: 1/5 || c0060ca
+Generating semantic similarity scores: 2/5 || da84e6d
+Generating semantic similarity scores: 3/5 || 891ec7c
+Generating semantic similarity scores: 4/5 || f1ee532
+Generating semantic similarity scores: 5/5 || 70f89be
+
+Ranked commits in relevance to advisory ./GHSA-v65g-f3cj-fjp4.json:
+Rank 1 ||  SHA: 70f89be ||  Commit Message: fix redos-able regex and add poc code to || VFC Prob: 0.02
+Rank 2 ||  SHA: f1ee532 ||  Commit Message: Update mypy version (#183) || VFC Prob: 0.01
+Rank 3 ||  SHA: 891ec7c ||  Commit Message: Allow bumpversion to find version (#184) || VFC Prob: 0.0
+Rank 4 ||  SHA: c0060ca ||  Commit Message: Bump version: 0.5.8 → 0.5.9 || VFC Prob: 0.0
+Rank 5 ||  SHA: da84e6d ||  Commit Message: Compile release notes || VFC Prob: 0.0
+
+# we can see the repository of the target advisory was cloned and output was saved from VFCFinder
+~/demo$ tree -L 3
+.
+├── clones 
+│   └── ethereum # cloned repository initiated by VFCFinder
+│       └── eth-account
+├── GHSA-v65g-f3cj-fjp4.json
+└── ranked_commits_GHSA-v65g-f3cj-fjp4.csv  # saved output from VFCFinder
+
+3 directories, 2 files
 ```
 
 
@@ -85,13 +150,13 @@ import vfcfinder
 
 if __name__ == '__main__':
     # Set required args for VFCFinder
-    GHSA_FILE = "./GHSA-v65g-f3cj-fjp4.json"
-    CLONE_PATH = "./../test_clone_repo/"
-
+    ADVISORY_PATH = "./GHSA-v65g-f3cj-fjp4.json" # local path to the advisory
+    CLONE_PATH = "./clones/" # clone path can be any location
+ 
     # Rank the commits in relevance to a GHSA report. 
-    # Returns a pd.DataFrame
-    ranked_commits = vfcfinder.vfc_ranker.rank(temp_clone_path=CLONE_PATH,
-                                               temp_ghsa_path=GHSA_FILE,
+    # Returns a pd.DataFrame, without saving the results
+    ranked_commits = vfcfinder.vfc_ranker.rank(clone_path=CLONE_PATH,
+                                               advisory_path=ADVISORY_PATH,
                                                return_results=True)
 
     # print the top ranked commit
@@ -128,19 +193,19 @@ if __name__ == '__main__':
     REPO_OWNER = "ckeditor"
     REPO_NAME = "ckeditor4"
     TARGET_SHAS = ["d158413449692d920a778503502dcb22881bc949"]
-    CLONE_DIRECTORY = "./../test_clone_repo/"
-    full_repo_path = f"{CLONE_DIRECTORY}{REPO_OWNER}/{REPO_NAME}/"
+    CLONE_PATH = "./clones/" # clone path can be any location
+    full_repo_path = f"{CLONE_PATH}{REPO_OWNER}/{REPO_NAME}/"
 
     # clone the repository
     vfcfinder.utils.git_helper.clone_repo(
         repo_owner=REPO_OWNER, 
         repo_name=REPO_NAME, 
-        clone_path=CLONE_DIRECTORY
+        clone_path=CLONE_PATH
     )
 
     # generate the VFC probability
-    probs = vfcfinder.vfc_identifier.vfc_prob(temp_clone_path=full_repo_path,
-                                              temp_commits=TARGET_SHAS)
+    probs = vfcfinder.vfc_identifier.vfc_prob(clone_path=full_repo_path,
+                                              commits=TARGET_SHAS)
     
     # print the VFC probability
     print(probs.head())

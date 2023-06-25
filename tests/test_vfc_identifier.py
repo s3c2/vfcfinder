@@ -19,7 +19,7 @@ class TestVFCIdentifier(unittest.TestCase):
         repo_owner = "ckeditor"
         repo_name = "ckeditor4"
         target_shas = ["d158413449692d920a778503502dcb22881bc949"]
-        clone_directory = "/home/td/Documents/test_clone_repo/"
+        clone_directory = "./../test_clone_repo/"
         full_repo_path = f"{clone_directory}{repo_owner}/{repo_name}/"
 
         # clone the repository
@@ -28,8 +28,8 @@ class TestVFCIdentifier(unittest.TestCase):
         )
 
         # generate VFC probability
-        probs = vfc_identifier.vfc_prob(temp_clone_path=full_repo_path,
-                                        temp_commits=target_shas)
+        probs = vfc_identifier.vfc_prob(clone_path=full_repo_path,
+                                        commits=target_shas)
 
         # Rank should be 70f89be700df0d5f08ef696252c88741f8414060
         self.assertEqual(

@@ -9,27 +9,27 @@ from vfcfinder.utils import git_helper
 from vfcfinder.features import vfc_identification
 
 
-def vfc_prob(temp_clone_path: str, temp_commits:list) -> pd.DataFrame:
+def vfc_prob(clone_path: str, commits:list) -> pd.DataFrame:
     """Generates a probability for if a commit fixed a vulnerability
     Low probability = 0
     High probability = 1
 
     Args:
-        temp_clone_path (str): Path to clone a repository
+        clone_path (str): Path to clone a repository
         commits (bool): List of commits 
 
     Returns:
         pd.DataFrame: commit with associated VFC probability
     """
     # SET args
-    CLONE_DIRECTORY = temp_clone_path
+    CLONE_DIRECTORY = clone_path
 
     # dynamically set variables
     PARENT_PATH = f"{str(Path(__file__).resolve().parent.parent)}/"
     DEVICE = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
     # Convert the list a DF
-    commits = pd.DataFrame([temp_commits], columns = ["sha"])
+    commits_df = pd.DataFrame([commits], columns = ["sha"])
 
     #####################################################################################
     # generate features
@@ -37,8 +37,8 @@ def vfc_prob(temp_clone_path: str, temp_commits:list) -> pd.DataFrame:
     commits_diff = pd.DataFrame()
 
     # get the diff of each commit
-    for idx, row in commits.iterrows():
-        print(f"Obtaining diff for commit {idx+1}/{len(commits)} || {row['sha']}")
+    for idx, row in commits_df.iterrows():
+        print(f"Obtaining diff for commit {idx+1}/{len(commits_df)} || {row['sha']}")
         temp_diff = git_helper.git_diff(
             clone_path=CLONE_DIRECTORY,
             commit_sha=row["sha"],
@@ -83,10 +83,10 @@ def vfc_prob(temp_clone_path: str, temp_commits:list) -> pd.DataFrame:
     commit_vfc_data["vfc_prob"] = probs
 
     # merge the probabilities back to the commits
-    commits = pd.merge(
-        commits, commit_vfc_data[["sha", "vfc_prob"]], on=["sha"], how="left"
+    commits_df = pd.merge(
+        commits_df, commit_vfc_data[["sha", "vfc_prob"]], on=["sha"], how="left"
     )
 
-    commits["vfc_prob"] = commits.vfc_prob.fillna(0)
+    commits_df["vfc_prob"] = commits_df.vfc_prob.fillna(0)
 
-    return commits
+    return commits_df

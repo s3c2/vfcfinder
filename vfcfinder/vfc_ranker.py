@@ -14,7 +14,7 @@ from vfcfinder.utils import osv_helper, git_helper
 from vfcfinder.features import vfc_identification, static_features, semantic_similarity
 
 
-def rank(temp_ghsa_path: str, temp_clone_path: str, return_results=False, save_path=None):
+def rank(advisory_path: str, clone_path: str, return_results=False, save_path=None):
     """Ranks commits in relevance to a given security advisory
 
     Args:
@@ -24,8 +24,8 @@ def rank(temp_ghsa_path: str, temp_clone_path: str, return_results=False, save_p
         save_path (str): Path to save results in a CSV form
     """
     # SET args
-    GHSA_ID = temp_ghsa_path
-    CLONE_DIRECTORY = temp_clone_path
+    GHSA_ID = advisory_path
+    CLONE_DIRECTORY = clone_path
 
     # dynamically set variables
     PARENT_PATH = f"{str(Path(__file__).resolve().parent.parent)}/"
