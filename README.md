@@ -24,7 +24,8 @@ Vulnerability fixing commits (VFC) play a critical part in the health of modern-
 <!-- ![](./docs/gifs/demo.gif) -->
 <img src="./docs/gifs/demo.gif" alt="demo">
 </p>
- 
+
+This is beta quality! Feel free to submit an issue if you want a new feature or find a bug :)
 
 # Installation
 Clone the VFCFinder repository and pip install from the clone. We recommend creating a [virtual environment](https://docs.python.org/3/library/venv.html) to install VFCFinder. 
@@ -250,7 +251,7 @@ VFCFinder is available under the Apache-2.0 License
   * ***Apache-2.0 License***: See [LICENSE](./LICENSE) file for details.
 
 # Contact
-For VFCFinder bug reports and feature requests please visit [GitHub Issues](https://github.com/s3c2/vfcfinder/issues).
+For VFCFinder bugs and feature requests please visit [GitHub Issues](https://github.com/s3c2/vfcfinder/issues).
 
 # Authors
 * [Trevor Dunlap](https://github.com/tdunlap607) 
