@@ -219,26 +219,33 @@ def rank(advisory_path: str, clone_path: str, return_results=False, output_path=
     #####################################################################################
     # semantic similarity
     print("\n")
-    similarity_df = pd.DataFrame()
+    # similarity_df = pd.DataFrame()
 
-    for idx, row in commits.iterrows():
-        print(
-            f"Generating semantic similarity scores: {idx+1}/{len(commits)} || {row['sha'][:7]}"
-        )
-        temp_sim = semantic_similarity.semantic_similarity(
-            full_message=row["full_message"], advisory_details=parsed[0]["details"]
-        )
-        similarity_df = pd.concat(
-            [
-                similarity_df,
-                pd.DataFrame(
-                    [[row.sha, temp_sim]], columns=["sha", "semantic_similarity"]
-                ),
-            ]
-        )
+    # for idx, row in commits.iterrows():
+    #     print(
+    #         f"Generating semantic similarity scores: {idx+1}/{len(commits)} || {row['sha'][:7]}"
+    #     )
+    #     temp_sim = semantic_similarity.semantic_similarity(
+    #         full_message=row["full_message"], advisory_details=parsed[0]["details"]
+    #     )
+    #     similarity_df = pd.concat(
+    #         [
+    #             similarity_df,
+    #             pd.DataFrame(
+    #                 [[row.sha, temp_sim]], columns=["sha", "semantic_similarity"]
+    #             ),
+    #         ]
+    #     )
+        
+    print("Generating semantic similarity scores...")
+        
+    # batch all the commits for a semantic similarity
+    commits["semantic_similarity"] = semantic_similarity.semantic_similarity_batch(
+        temp_commits=commits.copy(), advisory_details=parsed[0]["details"]
+    )
 
     # merge similarity scores back to commits
-    commits = commits.merge(similarity_df, on=["sha"], how="left")
+    # commits = commits.merge(similarity_df, on=["sha"], how="left")
 
     #####################################################################################
     # cve/ghsa in message
