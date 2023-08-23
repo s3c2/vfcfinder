@@ -54,6 +54,7 @@ class TestFeatures(unittest.TestCase):
             0.004,
         )
 
+
     @unittest.skip("Skipping for now")
     def test_cve_in_commit_message(self):
         """
@@ -91,6 +92,7 @@ class TestFeatures(unittest.TestCase):
             ].cve_in_message.iloc[0],
             False,
         )
+
 
     @unittest.skip("Skipping for now")
     def test_semantic_similarity(self):
@@ -156,6 +158,73 @@ class TestFeatures(unittest.TestCase):
             round(similarity, 2),
             0.88,
         )
+        
+        
+    @unittest.skip("Skipping for now")
+    def test_semantic_similarity_batch(self):
+        """
+        Testing semantic similarity batches
+        Example GHSA: GHSA-fj7c-vg2v-ccrm
+        Web Link: https://github.com/github/advisory-database/blob/main/advisories/github-reviewed/2022/07/GHSA-fj7c-vg2v-ccrm/GHSA-fj7c-vg2v-ccrm.json
+        VFC: https://github.com/undertow-io/undertow/commit/c7e84a0b7efced38506d7d1dfea5902366973877
+        Repo Link: https://github.com/undertow-io/undertow
+        """
+
+        # Set args for cloning a repo
+        repo_owner = "undertow-io"
+        repo_name = "undertow"
+        clone_directory = "./../test_clone_repo/"
+        full_repo_path = f"{clone_directory}{repo_owner}/{repo_name}/"
+        target_sha = f"c7e84a0b7efced38506d7d1dfea5902366973877"
+
+        # clone the repository
+        git_helper.clone_repo(
+            repo_owner=repo_owner, repo_name=repo_name, clone_path=clone_directory
+        )
+
+        # parse the advisory
+        # Open the json
+        with open("./tests/data/osv_schema.json", "r") as f:
+            osv_schema = json.load(f)
+            f.close()
+
+        parsed = osv_helper.parse_osv(
+            osv_json_filename="./tests/data/GHSA-fj7c-vg2v-ccrm.json",
+            osv_schema=osv_schema,
+        )
+
+        # set the advisory details message
+        advisory_details = parsed[0]["details"]
+
+        # get the tags
+        tags = git_helper.get_prior_tag(
+            repo_owner=repo_owner,
+            repo_name=repo_name,
+            clone_path=clone_directory,
+            target_tag=parsed[1].iloc[1].fixed,
+        )
+
+        # get the commits
+        commits = git_helper.get_commits_between_tags(
+            prior_tag=tags["prior_tag"],
+            current_tag=tags["current_tag"],
+            temp_repo_path=full_repo_path,
+        )
+
+        # batch all the commits for a semantic similarity
+        commits["semantic_similarity"] = semantic_similarity.semantic_similarity_batch(
+            temp_commits=commits.copy(), advisory_details=advisory_details
+        )
+        
+        # target commit from VFC c7e84a0b7efced38506d7d1dfea5902366973877
+        similarity = commits[commits["sha"] == target_sha].semantic_similarity.iloc[0]
+
+        # Semantic similarity should be 0.88 for example
+        self.assertEqual(
+            round(similarity, 2),
+            0.88,
+        )
+        
 
     # @unittest.skip("Skipping for now")
     def test_vfc_identification(self):
@@ -184,6 +253,11 @@ class TestFeatures(unittest.TestCase):
         device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
         # device = "cpu"
 
+        # clone the repository
+        git_helper.clone_repo(
+            repo_owner=repo_owner, repo_name=repo_name, clone_path=clone_directory
+        )
+        
         commit = git_helper.git_diff(clone_path=full_repo_path, commit_sha=target_sha)
 
         commit_data = vfc_identification.load_ghsa_vfc_data(
@@ -222,7 +296,7 @@ class TestFeatures(unittest.TestCase):
             0.99,
         )
 
-    # @unittest.skip("Skipping for now")
+    @unittest.skip("Skipping for now")
     def test_vfc_type(self):
         """
         Testing semantic similarity

@@ -7,5 +7,5 @@ scikit_learn
 sentence_transformers
 torch
 tqdm
-transformers
+transformers==4.30.2
 xgboost
