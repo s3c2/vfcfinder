@@ -259,3 +259,19 @@ For VFCFinder bugs and feature requests please visit [GitHub Issues](https://git
 * [William Enck](https://github.com/enck)
 * [Brad Reaves](https://github.com/bradreaves)
 
+# Cite
+
+```
+@misc{dunlap_vfcfinder_2023,
+	title = {{VFCFinder}: {Seamlessly} {Pairing} {Security} {Advisories} and {Patches}},
+	shorttitle = {{VFCFinder}},
+	url = {http://arxiv.org/abs/2311.01532},
+	doi = {10.48550/arXiv.2311.01532},
+	urldate = {2023-12-01},
+	publisher = {arXiv},
+	author = {Dunlap, Trevor and Lin, Elizabeth and Enck, William and Reaves, Bradley},
+	month = nov,
+	year = {2023},
+}
+```
+
